@@ -1,18 +1,21 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
-import { faPencil,faTrash } from '@fortawesome/free-solid-svg-icons'
-import IdeaCard from './IdeaCard'
+import React, { useContext } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
+import IdeaCard from "./IdeaCard";
+import { IdeasContext } from "../context/IdeasContextProvider";
 
 export default function IdeaList(props) {
-const { idea,handleDeleteIdea, handleEditIdea} = props
+  const { ideas } = useContext(IdeasContext);
 
   return (
     <ol>
-      {idea.map((idea, ideaIndex) => {
+      {ideas.map((idea, idx) => {
         return (
-          <IdeaCard idea={idea} key={ideaIndex} handleDeleteIdea={handleDeleteIdea} handleEditIdea={handleEditIdea} index={ideaIndex}></IdeaCard>
-        )
+          <IdeaCard key={idx} idea={idea}>
+            {" "}
+          </IdeaCard>
+        );
       })}
     </ol>
-  )
+  );
 }
